@@ -28,7 +28,7 @@ services:
   dashboard:
     image: ghcr.io/saleor/saleor-dashboard:latest
     ports:
-      - 9000:80
+      - "8081:80"
     restart: unless-stopped
 
   db:
@@ -44,6 +44,8 @@ services:
     environment:
       - POSTGRES_USER=saleor
       - POSTGRES_PASSWORD=saleor
+      - DATABASE_URL=postgres://postgres:password@db:5432/saleor
+      - SECRET_KEY=your_secret_key_here
 
   redis:
     image: library/redis:7.0-alpine
